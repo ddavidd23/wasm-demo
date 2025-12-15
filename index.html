@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WASM Demo</title>
+</head>
+<body>
+    <h1>C++ WebAssembly Demo</h1>
+    <button id="btn" onclick="callF()" disabled>Call f()</button>
+    <button id="btn2" onclick="callIncrement()" disabled>Increment</button>
+    <pre id="output"></pre>
+
+    <script>
+        var Module = {
+            print: function(text) {
+                document.getElementById('output').textContent += text + '\n';
+            },
+            onRuntimeInitialized: function() {
+                document.getElementById('btn').disabled = false;
+                document.getElementById('btn2').disabled = false;
+            }
+        };
+
+        function callF() {
+            Module._f();
+        }
+
+        function callIncrement() {
+            Module._increment();
+        }
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>
